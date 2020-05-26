@@ -1,37 +1,34 @@
 <?php
 
-namespace Jagilpe\AjaxModalsBundle\Controller;
+namespace Jagilpe\AjaxModalsBundle\View;
 
-use Jagilpe\AjaxModalsBundle\View\AjaxViewFactory;
-use Jagilpe\AjaxModalsBundle\View\AjaxViewInterface;
+use Jagilpe\AjaxModalsBundle\Exception\AjaxModalsException;
 
 /**
- * Base trait to work with Ajax View in a controller
+ * Factory class for the AjaxViews
  *
  * @author Javier Gil Pereda <javier.gil@module-7.com>
+ *
  */
-trait AjaxViewControllerTrait
+class AjaxViewFactory
 {
-
     /**
-     * @var AjaxViewFactory
-     */
-    private $ajaxViewFactory;
-
-    public function __construct(AjaxViewFactory $ajaxViewFactory)
-    {
-        $this->ajaxViewFactory = $ajaxViewFactory;
-    }
-
-    /**
-     * Creates an Ajax View of the given type
+     * Creates an AjaxView of the given type
      *
      * @param string $viewType
      *
      * @return AjaxViewInterface
      */
-    protected function createAjaxView($viewType)
+    public function createView($viewType)
     {
-        return $this->ajaxViewFactory->createView($viewType);
+        if (class_exists($viewType)) {
+            $reflectionClass = new \ReflectionClass($viewType);
+
+            if ($reflectionClass->implementsInterface(AjaxViewInterface::class)) {
+                return $reflectionClass->newInstance();
+            }
+        }
+
+        throw new AjaxModalsException("View type $viewType does not exists.");
     }
 }
