@@ -2,15 +2,18 @@
 
 namespace Jagilpe\AjaxModalsBundle\Twig;
 
+use Twig\Environment;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
+
 /**
  *
  * @author Javier Gil Pereda <javier.gil@module-7.com>
  */
-class JagilpeAjaxModalsExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
+class JagilpeAjaxModalsExtension extends AbstractExtension
 {
     /**
      * {@inheritDoc}
-     * @see Twig_ExtensionInterface::getName()
      */
     public function getName()
     {
@@ -19,18 +22,17 @@ class JagilpeAjaxModalsExtension extends \Twig_Extension implements \Twig_Extens
 
     /**
      * {@inheritDoc}
-     * @see Twig_Extension::getFunctions()
      */
     public function getFunctions()
     {
-        $functions = array();
-        $functions[] = new \Twig_SimpleFunction(
+        $functions = [];
+        $functions[] = new TwigFunction(
             'jgp_modal_container',
-            array($this, 'renderModalContainer'),
-            array(
-                'is_safe' => array('html'),
+            [$this, 'renderModalContainer'],
+            [
+                'is_safe' => ['html'],
                 'needs_environment' => true,
-            )
+            ]
         );
 
         return $functions;
@@ -41,7 +43,7 @@ class JagilpeAjaxModalsExtension extends \Twig_Extension implements \Twig_Extens
      *
      * @return string
      */
-    public function renderModalContainer(\Twig_Environment $environment, array $options = array())
+    public function renderModalContainer(Environment $environment, array $options = [])
     {
         return $environment->render('JagilpeAjaxModalsBundle:Modal:jgp_modal_dialog.html.twig', $options);
     }
