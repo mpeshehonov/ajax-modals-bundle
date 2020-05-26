@@ -2,9 +2,9 @@
 
 namespace Jagilpe\AjaxModalsBundle\EventListener;
 
-use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpFoundation\Response;
 use Jagilpe\AjaxModalsBundle\View\AjaxViewInterface;
+use Symfony\Component\HttpKernel\Event\ViewEvent;
 
 /**
  * Generates the right Response object from the AjaxView in Ajax Controllers
@@ -14,7 +14,7 @@ use Jagilpe\AjaxModalsBundle\View\AjaxViewInterface;
  */
 class AjaxViewControllerEventListener
 {
-    public function onKernelView(GetResponseForControllerResultEvent $event)
+    public function onKernelView(ViewEvent $event)
     {
         $controllerResult = $event->getControllerResult();
 
