@@ -45,6 +45,6 @@ class JagilpeAjaxModalsExtension extends AbstractExtension
      */
     public function renderModalContainer(Environment $environment, array $options = [])
     {
-        return $environment->render('JagilpeAjaxModalsBundle:Modal:jgp_modal_dialog.html.twig', $options);
+        return $environment->render('@JagilpeAjaxModals/Modal/jgp_modal_dialog.html.twig', $options);
     }
 }
