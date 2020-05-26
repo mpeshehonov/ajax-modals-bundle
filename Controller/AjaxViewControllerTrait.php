@@ -2,6 +2,7 @@
 
 namespace Jagilpe\AjaxModalsBundle\Controller;
 
+use Jagilpe\AjaxModalsBundle\View\AjaxViewFactory;
 use Jagilpe\AjaxModalsBundle\View\AjaxViewInterface;
 
 /**
@@ -11,6 +12,17 @@ use Jagilpe\AjaxModalsBundle\View\AjaxViewInterface;
  */
 trait AjaxViewControllerTrait
 {
+
+    /**
+     * @var AjaxViewFactory
+     */
+    private $ajaxViewFactory;
+
+    public function __construct(AjaxViewFactory $ajaxViewFactory)
+    {
+        $this->ajaxViewFactory = $ajaxViewFactory;
+    }
+
     /**
      * Creates an Ajax View of the given type
      *
@@ -20,8 +32,6 @@ trait AjaxViewControllerTrait
      */
     protected function createAjaxView($viewType)
     {
-        $ajaxViewsFactory = $this->get('jgp_ajax_modals.ajax_views.factory');
-
-        return $ajaxViewsFactory->createView($viewType);
+        return $this->ajaxViewFactory->createView($viewType);
     }
 }
