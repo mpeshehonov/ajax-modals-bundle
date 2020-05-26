@@ -14,3 +14,11 @@ services:
         class: Jagilpe\AjaxModalsBundle\EventListener\AjaxViewControllerEventListener
         tags:
             - { name: kernel.event_listener, event: kernel.view }
+            
+    Jagilpe\AjaxModalsBundle\View\AjaxViewFactory:
+        alias: jgp_ajax_modals.ajax_views.factory
+        public: false
+
+    Jagilpe\AjaxModalsBundle\EventListener\AjaxViewControllerEventListener:
+        alias: jgp_ajax_modals.ajax_view_controller_listener
+        public: false
