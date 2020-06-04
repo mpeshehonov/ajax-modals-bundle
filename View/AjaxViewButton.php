@@ -3,7 +3,6 @@
 namespace Jagilpe\AjaxModalsBundle\View;
 
 use Jagilpe\AjaxModalsBundle\View\AjaxViewButtonInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Represents a button in a AjaxView
@@ -43,10 +42,10 @@ class AjaxViewButton implements AjaxViewButtonInterface
      */
     protected $url;
 
-    public function __construct($buttonName, TranslatorInterface $translator)
+    public function __construct($buttonName)
     {
         $this->name = $buttonName;
-        $this->label = $translator->trans($buttonName);
+        $this->label = $buttonName;
     }
 
     /**

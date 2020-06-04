@@ -9,12 +9,6 @@ services:
         tags:
             - { name: twig.extension }
 
-    jgp_ajax_modals.ajax_view_button:
-        class: Jagilpe\AjaxModalsBundle\View\AjaxViewButton
-        public: true
-        arguments:
-            - '@translator'
-
     # Event listeners
     jgp_ajax_modals.ajax_view_controller_listener:
         class: Jagilpe\AjaxModalsBundle\EventListener\AjaxViewControllerEventListener
