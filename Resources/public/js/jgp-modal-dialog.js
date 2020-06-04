@@ -26,8 +26,10 @@
             var $element = $(this.element);
             this.modalsParkContainer = $(this.options.modalsParkContainerSel);
             this.modalContainer = $(this.options.modalContainerSel);
+            this.modalDialog = this.modalContainer.find('.modal-dialog');
             this.modalTitle = this.modalContainer.find('.modal-title span.anchorjs-icon');
             this.modalBody = this.modalContainer.find('.modal-body');
+            this.modalCloseIcon = this.modalContainer.find('button.close i');
             this.modalSaveButton = this.modalContainer.find('#jgp-modal-dialog-save-submit');
             this.modalDeleteButton = this.modalContainer.find('#jgp-modal-dialog-delete-submit');
             this.modalCancelButton = this.modalContainer.find('#jgp-modal-dialog-cancel-submit');
@@ -292,7 +294,7 @@
         },
 
         _loadContent: function(response) {
-            this.modalBody.empty()
+            this.modalBody.empty();
             this.modalBody.append(response.response);
             this._bindKeyEvents(this.modalBody);
             this._setModalTitle(response.title);
@@ -315,6 +317,10 @@
                 this._updateClasses(response.classes);
             }
 
+            if (typeof response.closeIconClasses !== 'undefined') {
+                this._updateCloseIconClasses(response.closeIconClasses);
+            }
+
             this._showModal();
         },
 
@@ -322,12 +328,25 @@
             // First we have to remove the current classes
             var plugin = this;
             this.modalClasses.forEach(function(cssClass) {
-                $(plugin.modalContainer).removeClass(cssClass);
+                $(plugin.modalDialog).removeClass(cssClass);
             });
 
             this.modalClasses = classes;
             this.modalClasses.forEach(function(cssClass) {
-                $(plugin.modalContainer).addClass(cssClass);
+                $(plugin.modalDialog).addClass(cssClass);
+            });
+        },
+
+        _updateCloseIconClasses: function(classes) {
+            // First we have to remove the current classes
+            var plugin = this;
+            this.modalClasses.forEach(function(cssClass) {
+                $(plugin.modalCloseIcon).removeClass(cssClass);
+            });
+
+            this.modalClasses = classes;
+            this.modalClasses.forEach(function(cssClass) {
+                $(plugin.modalCloseIcon).addClass(cssClass);
             });
         },
 

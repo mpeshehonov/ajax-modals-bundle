@@ -23,12 +23,17 @@ abstract class ContentAjaxView implements AjaxViewInterface
     /**
      * @var array
      */
-    protected $buttons = array();
+    protected $buttons = [];
 
     /**
      * @var array
      */
-    protected $classes = array();
+    protected $classes = [];
+
+    /**
+     * @var array
+     */
+    protected $closeIconClasses = [];
 
     /**
      *
@@ -37,13 +42,14 @@ abstract class ContentAjaxView implements AjaxViewInterface
      */
     public function getResponse()
     {
-        $response = array(
+        $response = [
             'title' => $this->getTitle(),
             'type' => AjaxViewInterface::TYPE_FORM,
             'response' => $this->getContent(),
             'buttons' => $this->getButtonsSpecification(),
-        );
+        ];
         $response['classes'] = $this->classes;
+        $response['closeIconClasses'] = $this->closeIconClasses;
 
         return $response;
     }
@@ -109,7 +115,7 @@ abstract class ContentAjaxView implements AjaxViewInterface
      */
     protected function getButtonsSpecification()
     {
-        $specification = array();
+        $specification = [];
 
         foreach ($this->buttons as $button) {
             $specification[$button->getName()] = $button->getButtonSpecification();
