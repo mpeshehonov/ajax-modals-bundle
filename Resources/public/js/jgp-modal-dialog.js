@@ -315,6 +315,8 @@
 
             if (typeof response.classes !== 'undefined') {
                 this._updateClasses(response.classes);
+            } else {
+                this._updateClasses(this.defaultClasses);
             }
 
             if (typeof response.closeIconClasses !== 'undefined') {
@@ -327,9 +329,7 @@
         _updateClasses: function(classes) {
             // First we have to remove the current classes
             var plugin = this;
-            this.modalClasses.forEach(function(cssClass) {
-                $(plugin.modalDialog).removeClass(cssClass);
-            });
+            this.modalDialog.attr('class', 'modal-dialog');
 
             this.modalClasses = classes;
             this.modalClasses.forEach(function(cssClass) {
