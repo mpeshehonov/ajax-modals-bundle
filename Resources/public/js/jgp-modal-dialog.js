@@ -260,7 +260,6 @@
 
         _hideModal: function() {
             this.modalContainer.modal('hide');
-            this._updateClasses(new Array());
             $(this.modalContainer).unbind('keyup');
         },
 
@@ -316,7 +315,7 @@
             if (typeof response.classes !== 'undefined') {
                 this._updateClasses(response.classes);
             } else {
-                this._updateClasses(this.defaultClasses);
+                this._updateClasses(this.modalClasses);
             }
 
             if (typeof response.closeIconClasses !== 'undefined') {
