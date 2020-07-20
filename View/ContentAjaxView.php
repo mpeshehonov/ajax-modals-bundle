@@ -124,7 +124,12 @@ abstract class ContentAjaxView implements AjaxViewInterface
         return $specification;
     }
 
-    protected function addButton(AjaxViewButtonInterface $button)
+    /**
+     * Adds a button to the footer of the modal
+     *
+     * @param AjaxViewButtonInterface $class
+     */
+    public function addButton(AjaxViewButtonInterface $button)
     {
         $this->buttons[$button->getName()] = $button;
     }
