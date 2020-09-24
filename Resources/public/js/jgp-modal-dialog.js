@@ -33,7 +33,7 @@
             this.modalSaveButton = this.modalContainer.find('#jgp-modal-dialog-save-submit');
             this.modalDeleteButton = this.modalContainer.find('#jgp-modal-dialog-delete-submit');
             this.modalCancelButton = this.modalContainer.find('#jgp-modal-dialog-cancel-submit');
-            this.modalClasses = new Array();
+            this.modalClasses = [];
             var formType = $element.attr('data-form');
             formType = typeof formType !== 'undefined' ? formType : 'save';
             this.dialogDataOrig = {
@@ -76,7 +76,7 @@
 
             this.dialogData = $.extend({}, this.dialogDataOrig);
 
-            this.parkedDialogs = new Array();
+            this.parkedDialogs = [];
 
             // Bind the click event to the element
             $element.click(function() {
@@ -223,7 +223,7 @@
             });
 
             this.modalsParkContainer.empty();
-            this.parkedDialogs = new Array();
+            this.parkedDialogs = [];
             this.modalBody.empty();
         },
 
